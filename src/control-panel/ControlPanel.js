@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ControlPanel.css";
+import {connect} from 'react-redux';
+import {clickBold, clickItalic, clickUnderline} from '../actions/index'
 
 const ControlPanel = () => {
   return (
@@ -8,21 +10,21 @@ const ControlPanel = () => {
           <button
             className="format-action"
             type="button"
-            onClick={() => console.log("bold")}
+            onClick={() => clickBold()}
           >
             <b>B</b>
           </button>
           <button
             className="format-action"
             type="button"
-            onClick={() => console.log("italic")}
+            onClick={() => clickItalic()}
           >
             <i>I</i>
           </button>
           <button
             className="format-action"
             type="button"
-            onClick={() => console.log("underline")}
+            onClick={() => clickUnderline()}
           >
             <u>U</u>
           </button>
@@ -31,4 +33,18 @@ const ControlPanel = () => {
   );
 };
 
-export default ControlPanel;
+function matchDispatchToProps(dispatch){
+    return {
+        clickBold: () => {
+            dispatch(clickBold());
+        },
+        clickItalic: () => {
+            dispatch(clickItalic());
+        },
+        clickUnderline: () => {
+            dispatch(clickUnderline());
+        }
+    };
+}
+  
+export default connect(null, matchDispatchToProps)(ControlPanel);

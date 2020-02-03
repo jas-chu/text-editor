@@ -5,3 +5,15 @@
 .selected {
   background-color: #ffa500;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
