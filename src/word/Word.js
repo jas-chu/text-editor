@@ -8,8 +8,13 @@ const Word = ({ text, index, currentWord, selectWord, bold, italic, underline })
   const [isItalic, setItalic] = useState(false);
   const [isUnderline, setUnderline] = useState(false);
 
-  console.log(index, currentWord);
-  let format = index === currentWord? format + "selected " : format;
+  console.log(bold, italic, underline);
+  let format = index === currentWord? "selected " : "";
+  format = (index === currentWord && bold) || isBold? format + "bold ": format;
+  format = (index === currentWord && italic) || isItalic? format + "italic ": format;
+  format = (index === currentWord && underline) || isUnderline? format + "underline ": format;
+
+  console.log("Format: ", format);
 
   return (
     <div className={"word " + format}>
@@ -22,7 +27,10 @@ const Word = ({ text, index, currentWord, selectWord, bold, italic, underline })
 
 function mapStateToProps(state) {
   return {
-      currentWord: state.currentWord
+      currentWord: state.WordReducer.currentWord,
+      bold: state.WordReducer.bold,
+      italic: state.WordReducer.italic,
+      underline: state.WordReducer.underline,
   };
 }
 

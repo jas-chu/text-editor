@@ -3,7 +3,7 @@ import "./ControlPanel.css";
 import {connect} from 'react-redux';
 import {clickBold, clickItalic, clickUnderline} from '../actions/index'
 
-const ControlPanel = () => {
+const ControlPanel = ({clickBold, clickItalic, clickUnderline}) => {
   return (
       <div id="control-panel">
         <div id="format-actions">
