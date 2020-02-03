@@ -3,28 +3,28 @@ import "./ControlPanel.css";
 import {connect} from 'react-redux';
 import {clickBold, clickItalic, clickUnderline} from '../actions/index'
 
-const ControlPanel = ({clickBold, clickItalic, clickUnderline}) => {
+const ControlPanel = ({clickBold, clickItalic, clickUnderline, bold, italic, underline}) => {
   return (
       <div id="control-panel">
         <div id="format-actions">
           <button
             className="format-action"
             type="button"
-            onClick={() => clickBold()}
+            onClick={() => clickBold(bold)}
           >
             <b>B</b>
           </button>
           <button
             className="format-action"
             type="button"
-            onClick={() => clickItalic()}
+            onClick={() => clickItalic(italic)}
           >
             <i>I</i>
           </button>
           <button
             className="format-action"
             type="button"
-            onClick={() => clickUnderline()}
+            onClick={() => clickUnderline(underline)}
           >
             <u>U</u>
           </button>
@@ -33,18 +33,26 @@ const ControlPanel = ({clickBold, clickItalic, clickUnderline}) => {
   );
 };
 
+function mapStateToProps(state) {
+    return {
+        bold: state.WordReducer.bold,
+        italic: state.WordReducer.italic,
+        underline: state.WordReducer.underline,
+    };
+  }
+
 function matchDispatchToProps(dispatch){
     return {
-        clickBold: () => {
-            dispatch(clickBold());
+        clickBold: (bold) => {
+            dispatch(clickBold(bold));
         },
-        clickItalic: () => {
-            dispatch(clickItalic());
+        clickItalic: (italic) => {
+            dispatch(clickItalic(italic));
         },
-        clickUnderline: () => {
-            dispatch(clickUnderline());
+        clickUnderline: (underline) => {
+            dispatch(clickUnderline(underline));
         }
     };
 }
   
-export default connect(null, matchDispatchToProps)(ControlPanel);
+export default connect(mapStateToProps, matchDispatchToProps)(ControlPanel);

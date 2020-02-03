@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {connect} from 'react-redux';
 import {selectWord} from '../actions/index'
 import "./Word.css";
@@ -8,17 +8,20 @@ const Word = ({ text, index, currentWord, selectWord, bold, italic, underline })
   const [isItalic, setItalic] = useState(false);
   const [isUnderline, setUnderline] = useState(false);
 
-  console.log(bold, italic, underline);
   let format = index === currentWord? "selected " : "";
   format = (index === currentWord && bold) || isBold? format + "bold ": format;
   format = (index === currentWord && italic) || isItalic? format + "italic ": format;
   format = (index === currentWord && underline) || isUnderline? format + "underline ": format;
 
-  console.log("Format: ", format);
+  useEffect(() => {
+    if (bold !== isBold && index === currentWord) setBold(bold);
+    if (italic !== isItalic && index === currentWord) setItalic(italic);
+    if (underline !== isUnderline && index === currentWord) setUnderline(underline);
+  }, [bold, italic, underline]);
 
   return (
     <div className={"word " + format}>
-      <span key={index} onClick={() => {console.log("current: ", currentWord); selectWord(currentWord === index? "" : index)}}>
+      <span key={index} onClick={() => {selectWord(currentWord === index? "" : index)}}>
         {text + " "}
       </span>
     </div>

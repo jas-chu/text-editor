@@ -4,33 +4,29 @@ export const CLICK_ITALIC = "CLICK_ITALIC";
 export const CLICK_UNDERLINE = "CLICK_UNDERLINE";
 
 export const selectWord = (word) => {
-  console.log("The word selected is ", word);
   return {
       type: WORD_SELECTED,
       payload: word
   }
 };
 
-export const clickBold = () => {
-  console.log("bold");
+export const clickBold = (bold) => {
   return {
       type: CLICK_BOLD,
-      payload: true
+      payload: !bold
   }
 };
 
-export const clickItalic = () => {
-  console.log("italic");
+export const clickItalic = (italic) => {
   return {
       type: CLICK_ITALIC,
-      payload: true
+      payload: !italic
   }
 };
 
-export const clickUnderline = () => {
-  console.log("underline");
+export const clickUnderline = (underline) => {
   return {
       type: CLICK_UNDERLINE,
-      payload: true
+      payload: !underline
   }
 };

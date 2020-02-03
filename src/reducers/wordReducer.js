@@ -8,12 +8,14 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  console.log("action: ", action);
   switch (action.type) {
       case WORD_SELECTED:
         return {
           ...state,
-          currentWord: action.payload
+          currentWord: action.payload,
+          bold: false,
+          italic: false,
+          underline: false
         };
       case CLICK_BOLD:
         return {
